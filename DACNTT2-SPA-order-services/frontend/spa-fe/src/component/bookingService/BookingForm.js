@@ -9,6 +9,7 @@ import authHeader from "../../services/auth-header";
 import CustomClearIndicator from "../plugins/multi-select/MultiSelect";
 
 const baseServiceURL = process.env.REACT_APP_URL_SERVICES_API;
+const baseOrderURL = process.env.REACT_APP_URL_ORDERS_API;
 
 // import "../datePicker/datepicker.scss";
 const BookingForm = () => {
@@ -44,7 +45,25 @@ const BookingForm = () => {
   console.log("SELECTED: ", selectedServices);
   console.log("NOTE: ", note);
 
-  const submitHandler = () => {};
+  const submitHandler = (event) => {
+    event.preventDefault();
+    axios
+      .post(
+        `${baseOrderURL}/create-service-order`,
+        {
+          date_booking: date,
+          services: selectedServices.selectedOpts,
+          amount: 2000,
+        },
+        {
+          headers: { "x-access-token": authHeader() },
+        }
+      )
+      .then((res) => {})
+      .catch((err) => {
+        console.log("ERR IN BOOKING: ", err);
+      });
+  };
 
   const filterPassedTime = (time) => {
     const currentDate = new Date();

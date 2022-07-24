@@ -1,6 +1,7 @@
 import { default as express } from "express";
 import { authJwt } from "../../middleware/authToken.mjs";
 import { findProduct } from "../../controller/database/productDatabaseController.mjs";
+import { findService } from "../../controller/database/servicesDBController.mjs";
 import {
   createOrder,
   listOrders,
@@ -37,6 +38,33 @@ router.get("/", authJwt.authToken, async (req, res) => {
   }
 });
 
-// router.post("/create-service-order", authJwt.authToken, async (req,res) => {
-//   const
-// })
+router.post("/create-service-order", authJwt.authToken, async (req, res) => {
+  // const phone = authJwt.getPhone();
+  // const now = new Date();
+  // if (now > req.body.date_booking) {
+  //   return res.status(400).json({
+  //     msg: "Ngày đặt không hợp lệ",
+  //   });
+  // } else {
+  //   await createServiceOrder(
+  //     req.body.date_booking,
+  //     phone,
+  //     req.body.services,
+  //     amount
+  //   );
+  // }
+  let services = [];
+  const requestServices = req.body.services;
+  await Promise.all(
+    requestServices.map(async (service) => {
+      const valid = await findService(service.value);
+      services.push(valid.service_ID);
+      if (!valid) return false;
+    })
+  );
+  if (services.length == 0) {
+    console.log("NULL");
+  }
+
+  res.status(200).json({ msg: "OK" });
+});
