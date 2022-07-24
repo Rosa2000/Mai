@@ -1,0 +1,20 @@
+.card a {
+  text-decoration: none;
+  color: black;
+}
+
+.card img {
+  max-width: 200px;
+  max-height: 200px;
+  object-fit: cover;
+}
+
+.card-title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.product-card {
+  width: 18rem;
+}

@@ -1,0 +1,28 @@
+/* .header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 9%;
+} */
+.icons a {
+  height: 4.5rem;
+  width: 4.5rem;
+  line-height: 4.5rem;
+  border-radius: 0.5rem;
+  font-size: 1.7rem;
+  color: #222;
+  margin-left: 0.3rem;
+  text-align: center;
+  cursor: pointer;
+}
+
+.icons a:hover {
+  color: white;
+}
